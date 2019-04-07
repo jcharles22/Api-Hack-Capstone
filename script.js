@@ -26,9 +26,7 @@ function watchForm() {
     $('form').submit(function(e) {
     e.preventDefault();
     city=$('#city').val().replace(/\s/g,'');
-    console.log('the city is '+city);
     $('#city').val("");
-    console.log(city);
     searchWeather(city);
     searchUrl(city);
     hideHomePage();
@@ -39,16 +37,13 @@ function watchForm() {
 }
 
 function displayWeather(response) {
-    console.log(response);
     let location = response['location']['name']+" "+response['location']['region'];
     let tempF = response['current']['temp_f'];
     let tempC = response['current']['temp_c'];
     let condition = response['current']['condition']['text'];
     let conditionIconUrl = response['current']['condition']['icon'];
-    console.log(`${tempF} ${tempC} ${condition} `);
-
     $('.displayWeather').append(
-    `<h1><strong>Current Weather for ${location}</strong></h1>
+        `<h1><strong>Current Weather for ${location}</strong></h1>
         <img src="https:${conditionIconUrl}">
         <p>Description: ${condition}</p>
         <p>Temperature: F:${tempF} C:${tempC} </p>`        
@@ -68,10 +63,6 @@ function searchWeather(city) {
         });
 };
 
-
-
-
-
 function searchUrl(city){
     let active = document.getElementsByClassName('active')[0].id;
     const url =`https://api.foursquare.com/v2/venues/explore?limit=10&radius=250&near=${city}&`;
@@ -83,36 +74,34 @@ function searchUrl(city){
     };
     let newUrl = url + formatParams(params); 
     fetch(newUrl) 
-            .then(response => {
-                if(response.ok) {
-                    return response.json();
-            }
-                throw new Error(response.statusText);
-            })
-            .then(response => {
-                display(response)
-            })
-            .catch(function(error) {
-            console.error(error);
-            });
+        .then(response => {
+            if(response.ok) {
+                return response.json();
+        }
+            throw new Error(response.statusText);
+        })
+        .then(response => {
+            display(response)
+        })
+        .catch(function(error) {
+        console.error(error);
+        });
 };
 function display(response) {
-    console.log(response.response.groups[0].items.length);
+    console.log(response);
     response.response.groups[0].items.forEach(index =>{
         $('.displayResults').append(
             `<li>
-            <p>${index.venue.name}</p>
+            <p class='venueName'>${index.venue.name}</p>
             <p>address: ${index.venue.location.formattedAddress[0]} ${index.venue.location.formattedAddress[1]}</p>
             </li>`
             );
-    });
-    
+    });  
 };
 
 function changeActiveSearch(city){
     $('body').on('click', '.venues', function(e) {
         e.preventDefault();
-        console.log('in Active city is '+city)
         let current=$('.active');
         if(!$(this).hasClass('active')){
             current.toggleClass('active');
