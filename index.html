@@ -8,6 +8,30 @@
   <title>Title</title>
 </head>
 <body>
+    <section class='homePage'>
+        <h1>Planning your trip starts here!</h1>
+        <form id="search-query-form">
+            <input type="text" placeholder="City, State" id="city"  class="search-query"  required>
+            <button type="submit" class="submit-button">Lets GO!</button>
+        </form>
+    </section>
+    <section class='results hidden'>
+        <div class ='displayWeather'>
+        </div>
+        <ul>
+            <li><button id='food' class="venues active" >Food</button></li>
+            <li><button id='events' class="venues">Event</button></li>
+            <li><button id='nightlife' class="venues">Nightlife</button></li>
+            <li><button id='hotel' class="venues">Hotels</button></li>
+        </ul>
+    <section class='display'>
+        <div>
+            <ul class='displayResults'>
+            </ul>
+        </div>
+    </section>
+    <button id='searchAgain'>Search a Different City?</button>
+    </section>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="script.js"></script>
   
