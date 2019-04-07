@@ -88,12 +88,11 @@ function searchUrl(city){
         });
 };
 function display(response) {
-    console.log(response);
     response.response.groups[0].items.forEach(index =>{
         $('.displayResults').append(
             `<li>
             <p class='venueName'>${index.venue.name}</p>
-            <p>address: ${index.venue.location.formattedAddress[0]} ${index.venue.location.formattedAddress[1]}</p>
+            <p>Address: ${index.venue.location.formattedAddress[0]} ${index.venue.location.formattedAddress[1]}</p>
             </li>`
             );
     });  
