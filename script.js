@@ -104,15 +104,32 @@ function display(response) {
         )
     }
     response.response.groups[0].items.forEach(index =>{
+        // send id for venue 
+        // getVenuePhoto(index.venue.id)
         $('.displayResults').append(
             `<li>
-            <p class='venueName'>${index.venue.name}</p>
+            <pclass='venueName'><img src='${index.venue.categories[0].icon.prefix}bg_32${index.venue.categories[0].icon.suffix}'>${index.venue.name}</p>
             <p>Address: ${index.venue.location.formattedAddress[0]} ${index.venue.location.formattedAddress[1]}</p>
             </li>`
             );
     });  
 };
-
+// get venue photo from id
+// function getVenuePhoto(id){
+//     fetch(`https://api.foursquare.com/v2/venues/${id}/photos?limit=1&client_id=L3TKFKNJ2AXEJW5L1ILMIBHOMGLSLPE45GK1EI0V05YBSMLX&client_secret=0CPKJLIZUPM4OHFWTT5UIGMDXTANUCG1NOIR0APWYRYZXZ4D&v=20180323&group=venue`)
+//         .then(response => {
+//             if(response.ok) {
+//                 return response.json();
+//         }
+//             throw new Error(response.statusText);
+//         })
+//         .then(response => {
+//             imgDisplay(response)
+//         })
+//         .catch(function(error) {
+//         console.error(error);
+//         });
+// }
 function changeActiveSearch(){
     $('body').on('click', '.venues', function(e) {
         e.preventDefault();
@@ -120,11 +137,11 @@ function changeActiveSearch(){
         if(!$(this).hasClass('active')){
             current.toggleClass('active');
             $(this).toggleClass('active');
-            }
-            $('.displayResults').empty();
-            
+             $('.displayResults').empty();
             searchUrl(city);
-        
+        }
+
+           
     });
 };
 
