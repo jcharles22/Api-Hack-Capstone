@@ -8,7 +8,7 @@ function formatParams(params) {
 function hideHomePage() {
     $('.homePage').addClass('hidden');
 }
-function displayButtons(city) {
+function displayButtons() {
     $('.results').removeClass('hidden');
     
 }
@@ -27,12 +27,12 @@ function watchForm() {
     e.preventDefault();
     city=$('#city').val().replace(/\s/g,'');
     $('#city').val("");
-    searchWeather(city);
-    searchUrl(city);
+    searchWeather();
+    searchUrl();
     hideHomePage();
-    displayButtons(city);
+    displayButtons();
     searchAgain();
-    changeActiveSearch(city);
+    changeActiveSearch();
   })
 }
 
@@ -49,7 +49,7 @@ function displayWeather(response) {
         <p>Temperature: F:${tempF} C:${tempC} </p>`        
 )};
 
-function searchWeather(city) {
+function searchWeather() {
     const url=`https://api.apixu.com/v1/current.json?key=b3ddd0b9be884a1b969140151190604&q=${city}`
     fetch(url) 
         .then(response => {
@@ -63,16 +63,25 @@ function searchWeather(city) {
         });
 };
 
-function searchUrl(city){
+function searchUrl(){
+    console.log(city);
+    let catagories ={
+        food: '4d4b7105d754a06374d81259',
+        events: '4d4b7105d754a06373d81259',
+        nightlife: '4d4b7105d754a06376d81259',
+        hotel: '4bf58dd8d48988d1fa931735'
+    }
     let active = document.getElementsByClassName('active')[0].id;
+    console.log(catagories[active]);
     const url =`https://api.foursquare.com/v2/venues/explore?limit=10&radius=250&near=${city}&`;
     let params = {
         client_id: 'L3TKFKNJ2AXEJW5L1ILMIBHOMGLSLPE45GK1EI0V05YBSMLX',
         client_secret: '0CPKJLIZUPM4OHFWTT5UIGMDXTANUCG1NOIR0APWYRYZXZ4D',
         v: '20180323',
-        section: active
+        categoryId: catagories[active]
     };
     let newUrl = url + formatParams(params); 
+    console.log(newUrl);
     fetch(newUrl) 
         .then(response => {
             if(response.ok) {
@@ -88,6 +97,12 @@ function searchUrl(city){
         });
 };
 function display(response) {
+    console.log(response);
+    if(response.response.groups[0].items.length===0) {
+        $('.displayResults').append(
+        `<p>Sorry no ${document.getElementsByClassName('active')[0].id} listed at this time.</p>`
+        )
+    }
     response.response.groups[0].items.forEach(index =>{
         $('.displayResults').append(
             `<li>
@@ -98,7 +113,7 @@ function display(response) {
     });  
 };
 
-function changeActiveSearch(city){
+function changeActiveSearch(){
     $('body').on('click', '.venues', function(e) {
         e.preventDefault();
         let current=$('.active');
@@ -107,6 +122,7 @@ function changeActiveSearch(city){
             $(this).toggleClass('active');
             }
             $('.displayResults').empty();
+            
             searchUrl(city);
         
     });
