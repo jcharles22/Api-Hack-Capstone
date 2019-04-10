@@ -1,7 +1,11 @@
+*{
+    box-sizing:border-box;
+}
+
 body {
-    min-width:320px;
-    text-align: center;
     
+    min-width:320px;
+    text-align: center; 
 }
 h1{
     margin-top: 200px;
@@ -15,11 +19,7 @@ input{
     font-size: 20px;
     width: 300px;
 }
-button, select{
-    margin-top:15px;
-    margin-right: 20px;
-    font-size: 16px;
-}
+
 .hidden{
     display: none;
 }
@@ -28,12 +28,12 @@ ul, li{
 }
 
 li> button {
-  padding: 16px 32px;
+  padding: 16px 16px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  min-width: 20%;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;
@@ -59,4 +59,8 @@ li> button:hover {
 .venueName{
     font-weight: bold;
     font-size: 18px;
+}
+.venueButtons{
+    padding: 0;
+    min-width: 320px;
 }
