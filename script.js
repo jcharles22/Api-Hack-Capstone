@@ -13,7 +13,7 @@ const params = {
     v: '20180323'
 };
 function formatParams(params) {
-    return Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
+    return Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`).join('&');
 };
 
 function hideHomePage() {
@@ -53,11 +53,13 @@ function displayWeather(response) {
     let condition = response['current']['condition']['text'];
     let conditionIconUrl = response['current']['condition']['icon'];
     $('.displayWeather').append(
-        `<h1><strong>Current Weather for ${location}</strong></h1>
+        `<h2><strong>Current Weather for ${location}</strong></h2>
         <img src="https:${conditionIconUrl}">
         <p>Description: ${condition}</p>
-        <p>Temperature: F:${tempF} C:${tempC} </p>`        
+        <p>Farenheit: ${tempF} degrees</p>`           
 )};
+
+
 
 function searchWeather() {
     const url=`https://api.apixu.com/v1/current.json?key=b3ddd0b9be884a1b969140151190604&q=${city}`
@@ -105,11 +107,18 @@ function display(response) {
         );
     }
     response.response.groups[0].items.forEach(index =>{
+        let address = index.venue.location.formattedAddress[1]
         $('.displayResults').append(
             `<li>
-            <pclass='venueName'><img src='${index.venue.categories[0].icon.prefix}bg_32${index.venue.categories[0].icon.suffix}'>${index.venue.name}</p>
-            <p>Address: ${index.venue.location.formattedAddress[0]} ${index.venue.location.formattedAddress[1]}</p>
-            </li>`
+            <div class='img'>
+                <img src='${index.venue.categories[0].icon.prefix}64${index.venue.categories[0].icon.suffix}'>
+            </div>
+            <div class='location'>
+                <p class='venueName'><a href='${venueLink(index.venue.name, address)}' target="_blank">${index.venue.name}</a></p>
+                <p>Address: ${index.venue.location.formattedAddress[0]} ${index.venue.location.formattedAddress[1]}</p>
+                </li>
+            </div>
+            <hr>`
             );
     });  
 };
@@ -129,6 +138,16 @@ function changeActiveSearch(){
     });
 };
 
+
+function venueLink(name, location){
+    const url='https://foursquare.com/explore?'
+    let yelpUrl = {
+        q: name,
+        near: location
+    };
+    return url+formatParams(yelpUrl);
+    
+}
 watchForm();
 });
 
