@@ -138,8 +138,13 @@ button:focus {
         margin: 0;
         padding-right: 75px;
     }
-    
+}
 
+@media screen and (max-height: 400px) {
+    h1, h2{
+        margin-top: 50px;
+    }
+    
 }
 
 
