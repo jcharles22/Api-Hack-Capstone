@@ -127,6 +127,21 @@ button:focus {
     outline:0;
 }
 
+@media screen and (min-width: 620px) {
+    .displayResults li{
+        justify-content: center;
+    }
+    .img{
+        margin:auto 0;
+    }
+    .location{
+        margin: 0;
+        padding-right: 75px;
+    }
+    
+
+}
+
 
 
 

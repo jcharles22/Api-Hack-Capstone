@@ -37,8 +37,8 @@ function watchForm() {
     e.preventDefault();
     city=$('#city').val().replace(/\s/g,'');
     $('#city').val("");
-    searchWeather();
     searchUrl();
+    searchWeather();
     hideHomePage();
     displayButtons();
     searchAgain();
@@ -56,7 +56,7 @@ function displayWeather(response) {
         `<h2><strong>Current Weather for ${location}</strong></h2>
         <img src="https:${conditionIconUrl}">
         <p>Description: ${condition}</p>
-        <p>Farenheit: ${tempF} degrees</p>`           
+        <p>${tempF} Degrees Farenheit</p>`           
 )};
 
 
@@ -95,7 +95,7 @@ function searchUrl(){
 
 function displayError(error) {
     $('.displayResults').append(
-        `<p>${error}</p>`
+        `<p>${error} Please try a different City</p>`
         );
 }
 
@@ -115,7 +115,7 @@ function display(response) {
             </div>
             <div class='location'>
                 <p class='venueName'><a href='${venueLink(index.venue.name, address)}' target="_blank">${index.venue.name}</a></p>
-                <p>Address: ${index.venue.location.formattedAddress[0]} ${index.venue.location.formattedAddress[1]}</p>
+                <p>${index.venue.location.formattedAddress[0]} ${index.venue.location.formattedAddress[1]}</p>
                 </li>
             </div>
             <hr>`
