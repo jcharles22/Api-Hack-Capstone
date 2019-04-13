@@ -12,6 +12,13 @@ const params = {
     client_secret: '0CPKJLIZUPM4OHFWTT5UIGMDXTANUCG1NOIR0APWYRYZXZ4D',
     v: '20180323'
 };
+
+const STATES =[ "AL","AK","AS","AZ","AR","CA","CO","CT","DE","DC","FM","FL","GA","GU","HI","ID","IL","IN","IA","KS","KY","LA","ME","MH","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","MP","OH","OK","OR","PW","PA","PR","RI","SC","SD","TN","TX","UT","VT","VI","VA","WA","WV","WI","WY"];
+let optionList=$('#state');
+STATES.forEach(option => optionList.append(new Option(option,option)));
+
+
+
 function formatParams(params) {
     return Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`).join('&');
 };
@@ -35,7 +42,8 @@ function searchAgain() {
 function watchForm() {
     $('form').submit(function(e) {
     e.preventDefault();
-    city=$('#city').val().replace(/\s/g,'');
+    city=$('#city').val().replace(/\s/g,'')+","+$('#state').val();
+    console.log(city);
     $('#city').val("");
     searchUrl();
     searchWeather();

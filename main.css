@@ -24,13 +24,17 @@ h2{
 }
 
 input{
-    display: block;
+    display: inline-block;
     margin: 0 auto;
     margin-top:25px;
     font-size: 20px;
-    width: 300px;
+    width: 230px;
 }
+select {
+    font-size: 20px;
+    padding:1.5px;
 
+}
 .hidden{
     display: none;
 }
@@ -48,14 +52,15 @@ li> button {
   display: inline-block;
   font-size: 16px;
   min-width: 20%;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
   cursor: pointer;
   background-color: #CDCDCD; 
   color: black; 
   border: 2px solid gray;
   border-bottom:none;
   border-radius:30px;
+  outline:none;
 }
 li> button:hover {
     background-color: #333333;
@@ -105,6 +110,8 @@ button:hover {
     padding-right: 15px;
 }
 button[type='submit'] {
+    display: block;
+    margin:0 auto;
     margin-top:15px;
     font-size: 20px;
     border: none;
@@ -122,27 +129,59 @@ input[type='text'], textarea {
         color: white;
         background: #333333;
 }
-button:focus {
+button:active {
     box-shadow: inset 0px 0px 10px #d3d3d3;
     outline:0;
 }
+a {
+    color:black;
+    font-weight:700px;
+    
+}
 
-@media screen and (min-width: 620px) {
-    .displayResults li{
-        justify-content: center;
+@media screen and (min-width: 600px) {
+    
+    input {
+        width: 300px;
     }
-    .img{
-        margin:auto 0;
+    .displayResults li {
+        position: relative;
+        height: auto;
+        width:100%;
     }
-    .location{
-        margin: 0;
-        padding-right: 75px;
+    .img {
+        position: relative;
+        left: 15%;
+    }
+    .location {
+        position: relative; 
+        width: 300px;
+        right: 2%; 
     }
 }
 
-@media screen and (max-height: 400px) {
-    h1, h2{
-        margin-top: 50px;
+
+
+@media screen and (min-width: 1280px) {
+    .displayResults li {
+        position: relative;
+        height: 100px;
+        width:100%;
+    }
+    .img {
+        position: relative;
+        left: 20%;
+    }
+    .location {
+        position: relative;
+        width: auto;
+        right: 2%;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    h1, h2 {
+        margin-top: 25px;
     }
     
 }
