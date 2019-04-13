@@ -1,21 +1,21 @@
 $(function (){
-    let city;
+    let city,
+        optionList=$('#state'),
+        cityError=false;
+    const url =`https://api.foursquare.com/v2/venues/explore?limit=10&radius=250&`,
+          urlBase='https://foursquare.com/explore?',
+          STATES =["AL","AK","AS","AZ","AR","CA","CO","CT","DE","DC","FM","FL","GA","GU","HI","ID","IL","IN","IA","KS","KY","LA","ME","MH","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","MP","OH","OK","OR","PW","PA","PR","RI","SC","SD","TN","TX","UT","VT","VI","VA","WA","WV","WI","WY"];
     const catagories = {
-        food: '4d4b7105d754a06374d81259',
-        events: '4d4b7105d754a06373d81259',
-        nightlife: '4d4b7105d754a06376d81259',
-        hotel: '4bf58dd8d48988d1fa931735'
+          food: '4d4b7105d754a06374d81259',
+          events: '4d4b7105d754a06373d81259',
+          nightlife: '4d4b7105d754a06376d81259',
+          hotel: '4bf58dd8d48988d1fa931735'
     };
-    const url =`https://api.foursquare.com/v2/venues/explore?limit=10&radius=250&`;
-    const urlBase='https://foursquare.com/explore?'
     const params = {
-        client_id: 'L3TKFKNJ2AXEJW5L1ILMIBHOMGLSLPE45GK1EI0V05YBSMLX',
-        client_secret: '0CPKJLIZUPM4OHFWTT5UIGMDXTANUCG1NOIR0APWYRYZXZ4D',
-        v: '20180323'
+          client_id: 'L3TKFKNJ2AXEJW5L1ILMIBHOMGLSLPE45GK1EI0V05YBSMLX',
+          client_secret: '0CPKJLIZUPM4OHFWTT5UIGMDXTANUCG1NOIR0APWYRYZXZ4D',
+          v: '20180323'
     };
-    const STATES =[ "AL","AK","AS","AZ","AR","CA","CO","CT","DE","DC","FM","FL","GA","GU","HI","ID","IL","IN","IA","KS","KY","LA","ME","MH","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","MP","OH","OK","OR","PW","PA","PR","RI","SC","SD","TN","TX","UT","VT","VI","VA","WA","WV","WI","WY"];
-    let optionList=$('#state');
-    let cityError=false;
     
     //appends state options to select
     STATES.forEach(option => optionList.append(new Option(option,option)));
@@ -26,16 +26,16 @@ $(function (){
     
     function watchForm() {
         $('form').submit(function(e) {
-        e.preventDefault();
-        city=$('#city').val().replace(/\s/g,'')+","+$('#state').val();
-        $('#city').val("");
-        searchUrl();
-        hideHomePage();
-        displayButtons();
-        searchWeather();
-        searchAgain();
-        changeActiveSearch();
-      });
+            e.preventDefault();
+            city=$('#city').val().replace(/\s/g,'')+","+$('#state').val();
+            $('#city').val("");
+            searchUrl();
+            hideHomePage();
+            displayButtons();
+            searchWeather();
+            searchAgain();
+            changeActiveSearch();
+        });
     };
     
     function hideHomePage() {
@@ -92,7 +92,7 @@ $(function (){
             .then(response => {
                 if(response.ok) {
                     return response.json();
-            }
+                }
                 throw new Error(response.statusText);
             })
             .then(response => {
