@@ -1,10 +1,7 @@
-/* font-family: 'Fjalla One', sans-serif;
-font-family: 'Noto Sans', sans-serif; */
 
 *{
     box-sizing:border-box;
 }
-
 body {
     font-family: 'Noto Sans', sans-serif;
     min-width:320px;
@@ -19,10 +16,9 @@ h1{
 }
 h2{
     font-family: 'Fjalla One', sans-serif;
-    margin-top: 100px;
+    margin-top: 75px;
     font-size:26px;
 }
-
 input{
     display: inline-block;
     margin: 0 auto;
@@ -33,7 +29,6 @@ input{
 select {
     font-size: 20px;
     padding:1.5px;
-
 }
 .hidden{
     display: none;
@@ -44,7 +39,6 @@ ul, li{
 ul{
     padding: 0;
 }
-
 li> button {
   padding: 10px 10px;
   text-align: center;
@@ -120,7 +114,7 @@ button[type='submit'] {
 }
 input[type='text'], textarea {
     background-color : white; 
-  }
+}
 #searchAgain {
         margin-top:15px;
         padding:10px;
@@ -135,12 +129,10 @@ button:active {
 }
 a {
     color:black;
-    font-weight:700px;
-    
+    font-weight:700px; 
 }
 
 @media screen and (min-width: 600px) {
-    
     input {
         width: 300px;
     }
@@ -159,8 +151,6 @@ a {
         right: 2%; 
     }
 }
-
-
 
 @media screen and (min-width: 1280px) {
     .displayResults li {
@@ -182,14 +172,5 @@ a {
 @media screen and (max-height: 600px) {
     h1, h2 {
         margin-top: 25px;
-    }
-    
+    }   
 }
-
-
-
-
-
-
-
-
