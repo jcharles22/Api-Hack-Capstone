@@ -53,7 +53,6 @@ li> button {
   color: black; 
   border: 2px solid gray;
   border-bottom:none;
-  border-radius:30px;
   outline:none;
 }
 li> button:hover {
@@ -149,6 +148,16 @@ a {
         position: relative; 
         width: 300px;
         right: 2%; 
+    }
+    input[type='text'], textarea {
+        margin-right:10px; 
+    }
+    button[type='submit'] {
+        margin-top:20px;
+        padding:5px;
+    }
+    li> button {
+        padding:10px 5px;
     }
 }
 

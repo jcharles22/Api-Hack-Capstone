@@ -81,7 +81,7 @@ $(function (){
                 displayWeather(response);
              })
             .catch(function(error) {
-             displayError(error);
+             displayError(error.message);
             });
     };
     
@@ -99,7 +99,7 @@ $(function (){
                 displayVenues(response)
             })
             .catch(function(error) {
-                displayError(error);
+                displayError(error.message);
             });
     };
     
