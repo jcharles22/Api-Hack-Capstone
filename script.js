@@ -27,7 +27,7 @@ $(function (){
     function watchForm() {
         $('form').submit(function(e) {
             e.preventDefault();
-            city=$('#city').val().replace(/\s/g,'')+","+$('#state').val();
+            city=$('#city').val().replace(/\s/g,'-')+","+$('#state').val();
             $('#city').val("");
             searchUrl();
             hideHomePage();
